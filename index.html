@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>像黑客一样使用 Linux 命令行</title>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Anonymous+Pro:400,700,400italic,700italic">
+    <link rel="stylesheet" href="css/default.css" media="screen">
+  </head>
+  <body>
+    <textarea id="source">
+class: middle, inverse
+# Python 技巧 
+
+```
+               _____     _      _
+ _ __  _   _  |_   _| __(_) ___| | _____
+| '_ \| | | |   | || '__| |/ __| |/ / __|
+| |_) | |_| |   | || |  | | (__|   <\__ \
+| .__/ \__, |   |_||_|  |_|\___|_|\_\___/
+|_|    |___/
+```                           
+
+### 千里之行，始于足下
+
+##### Slide链接：[http://vimiix.com/python_tricks](http://vimiix.com/python_tricks)
+
+```
+Vimiix
+2017.12.20
+```
+---
+class: center, middle, inverse
+## 人生苦短，我用Python
+### Lisf is short, use Python.
+---
+class: inverse
+## Python之禅
+
+```
+import this
+
+'''
+The Zen of Python, by Tim Peters
+
+Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+Flat is better than nested.
+Sparse is better than dense.
+Readability counts.
+Special cases aren't special enough to break the rules.
+Although practicality beats purity.
+Errors should never pass silently.
+Unless explicitly silenced.
+...
+'''
+```
+---
+class: inverse
+## 多种方法来验证多条件语句
+
+```
+x, y, z = 0, 1, 0
+
+if x == 1 or y == 1 or z == 1:
+    print('passed')
+
+if 1 in (x, y, z):
+    print('passed')
+
+# These only test for truthiness:
+if x or y or z:
+    print('passed')
+
+if any((x, y, z)):
+    print('passed')
+
+```
+---
+class: inverse
+## 函数参数解包
+
+```
+# Function argument unpacking
+
+def myfunc(x, y, z):
+    print(x, y, z)
+
+tuple_vec = (1, 0, 1)
+dict_vec = {'x': 1, 'y': 0, 'z': 1}
+
+myfunc(*tuple_vec)
+# 1, 0, 1
+
+myfunc(**dict_vec)
+# 1, 0, 1
+
+```
+---
+class: inverse
+## 使用timeit模块来测试函数执行效率
+
+```
+import timeit
+
+rt = timeit.timeit('"-".join(str(n) for n in range(100))',
+                  number=10000)
+print(rt)
+# 0.252703905106
+
+rt = timeit.timeit('"-".join([str(n) for n in range(100)])',
+                  number=10000)
+print(rt)
+# 0.234980106354
+
+rt = timeit.timeit('"-".join(map(str, range(100)))',
+                  number=10000)
+print(rt)
+# 0.152318954468
+
+```
+---
+class: inverse
+## 合并两个字典在不同版本中的写法
+
+```
+x = {'a': 1, 'b': 2}
+y = {'b': 3, 'c': 4}
+
+# Python 3.5+
+z = {**x, **y}
+print(z)
+# {'c': 4, 'a': 1, 'b': 3}
+
+# Python 2.x
+z = dict(x, **y)
+print(z)
+# {'a': 1, 'c': 4, 'b': 3}
+```
+---
+class: inverse
+## 巧用json模块更舒服的打印字典
+
+```
+# 标准打印出来，对于阅读不是很友好
+my_mapping = {'a': 23, 'b': 42, 'c': 0xc0ffee}
+print(my_mapping)
+# {'b': 42, 'c': 12648430. 'a': 23}  # đ
+
+# 使用json可以更好的展示
+import json
+print(json.dumps(my_mapping, indent=4, sort_keys=True))
+# {
+#     "a": 23,
+#     "b": 42,
+#     "c": 12648430
+# }
+
+```
+---
+class: inverse
+## 通过字典的值(value)排序输出
+
+```
+# How to sort a Python dict by value
+
+xs = {'a': 4, 'b': 3, 'c': 2, 'd': 1}
+
+print(sorted(xs.items(), key=lambda x: x[1]))
+# [('d', 1), ('c', 2), ('b', 3), ('a', 4)]
+
+# Or:
+
+import operator
+print(sorted(xs.items(), key=operator.itemgetter(1)))
+# [('d', 1), ('c', 2), ('b', 3), ('a', 4)]
+```
+---
+class: inverse
+## 字典的get用法和默认值
+
+```
+name_for_userid = {
+  382: "Alice",
+  590: "Bob",
+  951: "Dilbert",
+}
+
+def greeting(userid):
+  return "Hi %s!" % name_for_userid.get(userid, "there")
+
+print(greeting(382))
+# "Hi Alice!"
+
+print(greeting(2333333))
+# "Hi there!"
+```
+---
+class: inverse
+## 用namedtuple来代替简单的类
+
+```
+from collections import namedtuple
+Car = namedtuple('Car', 'color mileage')
+
+# 实例化一个Car,并像类一样使用
+my_car = Car('red', 3812.4)
+print(my_car.color)
+# 'red'
+print(my_car.mileage)
+# 3812.4
+
+print(my_car)
+# Car(color='red' , mileage=3812.4)
+
+# 就像元组一样，namedtuple也不可更改:
+my_car.color = 'blue'
+# AttributeError: "can't set attribute"
+```
+---
+class: center, middle, inverse
+## 持续更新中...
+---
+class: middle, inverse
+## 联系方式
+### 
+
+- Website: http://vimiix.com
+
+- Twitter: http://twitter.com/_vimiix
+
+- GitHub: http://github.com/vimiix
+
+- Email: [i@vimiix.com](mailto:i@vimiix.com)
+
+---
+class: center, middle, inverse
+## 谢谢大家！
+
+### 欢迎PR，欢迎扩散
+---
+class: center, middle, inverse
+Made in [Remark](http://remarkjs.com)
+    </textarea>
+    <script src="js/remark.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      var slideshow = remark.create({
+        highlightStyle: 'monokai',
+        highlightLanguage: 'remark'
+      });
+    </script>
+  </body>
+</html>
