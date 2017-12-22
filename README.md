@@ -15,4 +15,4 @@
 
 Visit: [http://vimiix.com/python_tricks](http://vimiix.com/python_tricks) 
 
-Thank to [@xuxiaodong](https://github.com/xuxiaodong/using-cli) for providing a such beautiful web sample.
+Thank to [@gnab](https://github.com/gnab/remark) for providing a  simple, in-browser, markdown-driven slideshow tool.
