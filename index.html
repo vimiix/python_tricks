@@ -220,6 +220,45 @@ my_car.color = 'blue'
 # AttributeError: "can't set attribute"
 ```
 ---
+class: inverse
+## Bool值可以作为整型数值来使用
+
+- True -> 1
+- False -> 0
+
+### 这个用法比较含蓄
+```
+num = 3
+
+"""算术运算"""
+print(isinstance(num, int) + (num < 10))
+# 2
+
+"""作索引用"""
+print(['奇数', '偶数'][num % 2 == 0])
+# 奇数
+```
+---
+class: inverse
+## 列表逆序的几种方法
+
+```
+"""切片方式"""
+a = [5, 4, 3, 2, 1]
+print(a[::-1])
+# [1, 2, 3, 4, 5]
+
+"""列表内建函数,会改变数组本身"""
+a.reverse()
+print(a)
+# [1, 2, 3, 4, 5]
+
+a = [5, 4, 3, 2, 1]
+"""函数方式, reversed()返回一个迭代器"""
+print([i for i in reversed(a)])
+# [1, 2, 3, 4, 5]
+```
+---
 class: center, middle, inverse
 ## 持续更新中...
 ---
