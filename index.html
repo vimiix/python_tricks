@@ -80,6 +80,40 @@ if any((x, y, z)):
 ```
 ---
 class: inverse
+## 将列表内的所有元素组合成一个字符串
+
+```python
+a = ["Vimiix", "is", "a", "Python", "Developer"]
+print(" ".join(a))
+# Vimiix is a Python Developer
+```
+---
+class: inverse
+## 不用循环语句打印重复字符
+
+```python
+print("code"*4)
+# codecodecodecode
+```
+---
+class: inverse
+## 检查两个字符串是否包含相同个数的字符组成
+
+```python
+from collections import Counter
+def is_anagram(str1, str2):
+     return Counter(str1) == Counter(str2)
+
+res = is_anagram('abcd', 'dbca')
+print(res)
+# True
+
+res = is_anagram('abcd', 'dbaa')
+print(res)
+# False
+```
+---
+class: inverse
 ## 函数参数解包
 
 ```
@@ -302,6 +336,16 @@ def isPalindrome(self, x):
         if x < 0:
             return False
         return str(x)[::-1] == str(x)
+```
+---
+class: inverse
+## 矩阵转置
+
+```python
+mat = [[1, 2, 3], [4, 5, 6]]
+res = zip(*mat)
+print(res)
+# [(1, 4), (2, 5), (3, 6)]
 ```
 ---
 class: center, middle, inverse
