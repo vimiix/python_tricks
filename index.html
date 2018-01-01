@@ -59,24 +59,16 @@ Unless explicitly silenced.
 ```
 ---
 class: inverse
-## 多种方法来验证多条件语句
+## 简单的服务器
 
-```
-x, y, z = 0, 1, 0
+#### 你如果想快速且简单地共享一个目录中的文件，你只需在终端执行下面对应版本的指令：
 
-if x == 1 or y == 1 or z == 1:
-    print('passed')
+```python
+# Python2
+python -m SimpleHTTPServer
 
-if 1 in (x, y, z):
-    print('passed')
-
-# These only test for truthiness:
-if x or y or z:
-    print('passed')
-
-if any((x, y, z)):
-    print('passed')
-
+# Python 3
+python3 -m http.server
 ```
 ---
 class: inverse
@@ -130,6 +122,27 @@ myfunc(*tuple_vec)
 
 myfunc(**dict_vec)
 # 1, 0, 1
+
+```
+---
+class: inverse
+## 多种方法来验证多条件语句
+
+```
+x, y, z = 0, 1, 0
+
+if x == 1 or y == 1 or z == 1:
+    print('passed')
+
+if 1 in (x, y, z):
+    print('passed')
+
+# These only test for truthiness:
+if x or y or z:
+    print('passed')
+
+if any((x, y, z)):
+    print('passed')
 
 ```
 ---
